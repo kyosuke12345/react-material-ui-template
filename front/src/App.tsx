@@ -6,6 +6,7 @@ import { ScopedCssBaseline } from "@mui/material";
 import authModule from "redux/modules/authModule";
 import { useDidMount } from "hooks/useDidMount";
 import { useDispatch } from "react-redux";
+import Layout from "components/template/Layout";
 
 // NOTE: userRoutesがまだ使用できないので、Routeで記載する
 
@@ -38,6 +39,24 @@ const App: React.VFC = () => {
               }
             />
             <Route path="*" element={<div>404</div>} />
+          </Route>
+          <Route path="template1/" element={<Layout />}>
+            <Route
+              path={"test1"}
+              element={
+                <div style={{ height: 2000, backgroundColor: "yellow" }}>
+                  <Link to="/template1/test2">test2</Link>
+                </div>
+              }
+            />
+            <Route
+              path={"test2"}
+              element={
+                <div style={{ height: 2000, backgroundColor: "blue" }}>
+                  <Link to="/template1/test1">test1</Link>
+                </div>
+              }
+            />
           </Route>
         </Routes>
       </BrowserRouter>
