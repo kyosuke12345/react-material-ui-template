@@ -1,12 +1,9 @@
 import { styled, ThemeProvider, createTheme } from "@mui/material/styles";
-import authModule from "redux/modules/authModule";
-import { useDidMount } from "hooks/useDidMount";
 import useMobile from "hooks/useMobile";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import ConnectDashboardNavbar from "./DashboardNavbar";
 import DashboardSidebar from "./DashboardSidebar";
-import { useDispatch } from "react-redux";
 
 export const SIDE_MENU_WIDTH = 256;
 
@@ -69,12 +66,6 @@ const theme = createTheme({
 const DashboardLayout: React.FC = () => {
   const [navOpen, setNavOpen] = useState(false);
   const isMobile = useMobile();
-  const dispatch = useDispatch();
-
-  useDidMount(() => {
-    dispatch(authModule.actions.login());
-  });
-
   return (
     <ThemeProvider theme={theme}>
       <DashboardLayoutRoot>
@@ -86,6 +77,7 @@ const DashboardLayout: React.FC = () => {
           isMobile={isMobile}
           openNav={navOpen}
           onCloseNav={() => setNavOpen(false)}
+          onClickNav={() => setNavOpen(false)}
         />
         <DashboardLayoutWrapper>
           <DashboardLayoutContainer>

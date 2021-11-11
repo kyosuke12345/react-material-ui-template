@@ -1,25 +1,16 @@
 import { Drawer, List, ModalProps } from "@mui/material";
 import { Box } from "@mui/system";
-import { ReactNode } from "react";
+import { useMemo } from "react";
 import path from "utils/path";
 import { SIDE_MENU_WIDTH } from "./DashboardLayout";
-import NavItem from "./NavItem";
+import NavItem, { NavItemProps } from "./NavItem";
 
 export type DashBoardSideBarProps = {
   isMobile: boolean;
   onCloseNav: ModalProps["onClose"];
   openNav: boolean;
+  onClickNav: NavItemProps["onClickNav"];
 };
-
-const SideBarContent: ReactNode = (
-  <Box>
-    <List>
-      {Object.values(path.dashboardPath).map((v, index) => (
-        <NavItem key={index} href={v.href} title={v.title} />
-      ))}
-    </List>
-  </Box>
-);
 
 /**
  * Dashboardのサイドバー
@@ -29,8 +20,28 @@ const SideBarContent: ReactNode = (
 const DashboardSidebar: React.VFC<DashBoardSideBarProps> = ({
   isMobile,
   onCloseNav,
+  onClickNav,
   openNav,
 }) => {
+  const SideBarContent = useMemo(
+    () => (
+      <Box>
+        <List>
+          {Object.values(path.dashboardPath).map((v, index) => (
+            <NavItem
+              key={index}
+              href={v.href}
+              title={v.title}
+              url={v.parentPath + "/" + v.href}
+              onClickNav={onClickNav}
+            />
+          ))}
+        </List>
+      </Box>
+    ),
+    [onClickNav]
+  );
+
   return (
     <>
       {isMobile ? (
