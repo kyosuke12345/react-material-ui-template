@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+    tty: true
+    environment:
+      - NODE_ENV=local
+    volumes:
+    - ./:/usr/src/app
+    # command: sh -c "cd sample_app && yarn start"
+    ports:
+    - "3000:3000"
