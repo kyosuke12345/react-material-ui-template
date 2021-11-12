@@ -36,7 +36,7 @@ const DashboardNavbar: React.VFC<DashboardNavbarProps> = ({
           </IconButton>
         )}
         <Grid container justifyContent="right">
-          <Box>
+          <Box pt={1}>
             <Typography variant="h6" component="h1">
               {name}
             </Typography>

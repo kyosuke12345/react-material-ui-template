@@ -21,7 +21,7 @@ const Layout: React.VFC = () => {
       <CssBaseline />
       <Header />
       <main>
-        <Box sx={{ my: 2 }}>
+        <Box sx={{ m: 4 }}>
           <Outlet />
         </Box>
       </main>

@@ -1,8 +1,10 @@
 import { AnyAction, combineReducers, ThunkAction } from "@reduxjs/toolkit";
 import authModule from "./modules/authModule";
 import testModule from "./modules/testModule";
+import { reducer as reduxFormReducer } from "redux-form";
 
 const rootReducer = combineReducers({
+  form: reduxFormReducer,
   test: testModule.reducer,
   auth: authModule.reducer,
 });

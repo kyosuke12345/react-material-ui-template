@@ -32,11 +32,13 @@ const DashboardLayoutContainer = styled("div")({
   overflow: "hidden",
 });
 
-const DashboardLayoutContent = styled("div")({
+const DashboardLayoutContent = styled("div")(({ theme }) => ({
   flex: "1 1 auto",
+  margin: theme.spacing(2),
+  padding: theme.spacing(2),
   height: "100%",
   overflow: "auto",
-});
+}));
 
 /** baseのtheme */
 const theme = createTheme({
